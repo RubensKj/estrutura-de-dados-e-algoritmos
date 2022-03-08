@@ -1,5 +1,7 @@
 package br.furb.lista;
 
+import java.util.Arrays;
+
 public class ListaEstatica {
 
     private static final int DEFAULT_SIZE = 10;
@@ -48,8 +50,8 @@ public class ListaEstatica {
             return;
         }
 
-        for (int i = indexValor; i < info.length; i++) {
-            if (i + 1 == info.length) {
+        for (int i = indexValor; i < tamanho; i++) {
+            if (i + 1 == tamanho) {
                 break;
             }
 
@@ -63,10 +65,10 @@ public class ListaEstatica {
     public String exibir() {
         StringBuilder infoString = new StringBuilder("[");
 
-        for (int i = 0; i < info.length; i++) {
+        for (int i = 0; i < tamanho; i++) {
             infoString.append(info[i]);
 
-            if (i + 1 != info.length) {
+            if (i + 1 != tamanho) {
                 infoString.append(", ");
             }
         }
@@ -79,7 +81,7 @@ public class ListaEstatica {
     }
 
     public void concatenar(ListaEstatica lista) {
-        for (int i = 0; i < lista.info.length; i++) {
+        for (int i = 0; i < lista.tamanho; i++) {
             this.inserir(lista.info[i]);
         }
     }
@@ -87,10 +89,10 @@ public class ListaEstatica {
     public ListaEstatica dividir() {
         ListaEstatica dividida = new ListaEstatica();
 
-        for (int i = 0; i < tamanho / 2; i++) {
-            int valor = this.info[i];
+        for (int i = 0; i < tamanho; i++) {
+            int valor = info[i];
             dividida.inserir(valor);
-            this.retirar(valor);
+            retirar(valor);
         }
 
         return dividida;
