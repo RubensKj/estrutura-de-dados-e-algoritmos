@@ -1,7 +1,5 @@
 package br.furb.lista;
 
-import java.util.Arrays;
-
 public class ListaEstatica {
 
     private static final int DEFAULT_SIZE = 10;
