@@ -1,6 +1,6 @@
-package br.furb.lista;
+package br.furb.lista.lineares;
 
-public class ListaEstatica {
+public class ListaEstatica implements Lista {
 
     private static final int DEFAULT_SIZE = 10;
 
@@ -12,6 +12,7 @@ public class ListaEstatica {
         tamanho = 0;
     }
 
+    @Override
     public void inserir(int valor) {
         if (tamanho == info.length) {
             redimensionar();
@@ -19,6 +20,16 @@ public class ListaEstatica {
 
         info[tamanho] = valor;
         tamanho++;
+    }
+
+    @Override
+    public void inserir(int valor, int pos) {
+
+    }
+
+    @Override
+    public int pegar(int pos) {
+        return info[pos];
     }
 
     private void redimensionar() {
@@ -31,6 +42,7 @@ public class ListaEstatica {
         info = novo;
     }
 
+    @Override
     public int buscar(int valor) {
 
         for (int i = 0; i < info.length; i++) {
@@ -41,6 +53,7 @@ public class ListaEstatica {
         return -1;
     }
 
+    @Override
     public void retirar(int valor) {
         int indexValor = buscar(valor);
 
@@ -60,6 +73,7 @@ public class ListaEstatica {
         tamanho--;
     }
 
+    @Override
     public String exibir() {
         StringBuilder infoString = new StringBuilder("[");
 
@@ -74,16 +88,19 @@ public class ListaEstatica {
         return infoString.append("]").toString();
     }
 
+    @Override
     public boolean estaVazia() {
         return tamanho == 0;
     }
 
-    public void concatenar(ListaEstatica lista) {
+    @Override
+    public void concatenar(Lista lista) {
         for (int i = 0; i < lista.getTamanho(); i++) {
-            this.inserir(lista.info[i]);
+            this.inserir(lista.pegar(i));
         }
     }
 
+    @Override
     public ListaEstatica dividir() {
         ListaEstatica dividida = new ListaEstatica();
 
@@ -99,6 +116,7 @@ public class ListaEstatica {
         return dividida;
     }
 
+    @Override
     public ListaEstatica copiar() {
         ListaEstatica copy = new ListaEstatica();
 
@@ -109,6 +127,7 @@ public class ListaEstatica {
         return copy;
     }
 
+    @Override
     public int getTamanho() {
         return tamanho;
     }

@@ -1,4 +1,4 @@
-package br.furb.lista;
+package br.furb.lista.lineares;
 
 import java.util.ArrayList;
 
