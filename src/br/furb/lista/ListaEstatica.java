@@ -79,7 +79,7 @@ public class ListaEstatica {
     }
 
     public void concatenar(ListaEstatica lista) {
-        for (int i = 0; i < lista.tamanho; i++) {
+        for (int i = 0; i < lista.getTamanho(); i++) {
             this.inserir(lista.info[i]);
         }
     }
@@ -87,11 +87,14 @@ public class ListaEstatica {
     public ListaEstatica dividir() {
         ListaEstatica dividida = new ListaEstatica();
 
-        for (int i = 0; i < tamanho; i++) {
-            int valor = info[i];
-            dividida.inserir(valor);
-            retirar(valor);
+        int tamanhoOriginal = this.tamanho;
+        int metadeLista = this.tamanho / 2;
+
+        for (int i = metadeLista; i < tamanhoOriginal; i++) {
+            dividida.inserir(info[i]);
         }
+
+        this.tamanho = metadeLista;
 
         return dividida;
     }
@@ -104,5 +107,9 @@ public class ListaEstatica {
         }
 
         return copy;
+    }
+
+    public int getTamanho() {
+        return tamanho;
     }
 }
