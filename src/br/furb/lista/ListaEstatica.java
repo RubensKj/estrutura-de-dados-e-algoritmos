@@ -99,7 +99,7 @@ public class ListaEstatica {
     public ListaEstatica copiar() {
         ListaEstatica copy = new ListaEstatica();
 
-        for (int i = 0; i < info.length; i++) {
+        for (int i = 0; i < tamanho; i++) {
             copy.inserir(info[i]);
         }
 
