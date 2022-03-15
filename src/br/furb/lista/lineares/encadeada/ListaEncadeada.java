@@ -73,6 +73,10 @@ public class ListaEncadeada implements Lista {
             anterior = p;
             p = p.getProx();
         }
+
+        if (ultimo == p) {
+            ultimo = anterior;
+        }
     }
 
     @Override
