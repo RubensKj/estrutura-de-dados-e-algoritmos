@@ -1,4 +1,6 @@
-package br.furb.lista.lineares;
+package br.furb.lista.lineares.estatica;
+
+import br.furb.lista.lineares.Lista;
 
 public class ListaEstatica implements Lista {
 
