@@ -1,25 +1,25 @@
 package br.furb.lista.lineares;
 
-public interface Lista {
-    void inserir(int valor);
+public interface Lista<T> {
+    void inserir(T valor);
 
-    void inserir(int valor, int pos);
+    void inserir(T valor, int pos);
 
-    int pegar(int pos);
+    T pegar(int pos);
 
-    int buscar(int valor);
+    int buscar(T valor);
 
-    void retirar(int valor);
+    void retirar(T valor);
 
     String exibir();
 
     boolean estaVazia();
 
-    void concatenar(Lista lista);
+    void concatenar(Lista<T> lista);
 
-    Lista dividir();
+    Lista<T> dividir();
 
-    Lista copiar();
+    Lista<T> copiar();
 
     int getTamanho();
 }

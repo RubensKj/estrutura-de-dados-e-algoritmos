@@ -2,20 +2,20 @@ package br.furb.lista.lineares.estatica;
 
 import br.furb.lista.lineares.Lista;
 
-public class ListaEstatica implements Lista {
+public class ListaEstatica<T> implements Lista<T> {
 
     private static final int DEFAULT_SIZE = 10;
 
-    private int info[];
+    private T[] info;
     private int tamanho;
 
     public ListaEstatica() {
-        info = new int[DEFAULT_SIZE];
+        info = (T[]) new Object[DEFAULT_SIZE];
         tamanho = 0;
     }
 
     @Override
-    public void inserir(int valor) {
+    public void inserir(T valor) {
         if (tamanho == info.length) {
             redimensionar();
         }
@@ -25,17 +25,17 @@ public class ListaEstatica implements Lista {
     }
 
     @Override
-    public void inserir(int valor, int pos) {
+    public void inserir(T valor, int pos) {
 
     }
 
     @Override
-    public int pegar(int pos) {
+    public T pegar(int pos) {
         return info[pos];
     }
 
     private void redimensionar() {
-        int[] novo = new int[info.length + DEFAULT_SIZE];
+        T[] novo = (T[]) new Object[info.length + DEFAULT_SIZE];
 
         for (int i = 0; i < info.length; i++) {
             novo[i] = info[i];
@@ -45,10 +45,10 @@ public class ListaEstatica implements Lista {
     }
 
     @Override
-    public int buscar(int valor) {
+    public int buscar(T valor) {
 
-        for (int i = 0; i < info.length; i++) {
-            if (info[i] == valor) {
+        for (int i = 0; i < tamanho; i++) {
+            if (info[i].equals(valor)) {
                 return i;
             }
         }
@@ -56,7 +56,7 @@ public class ListaEstatica implements Lista {
     }
 
     @Override
-    public void retirar(int valor) {
+    public void retirar(T valor) {
         int indexValor = buscar(valor);
 
         if (indexValor == -1) {
@@ -68,7 +68,7 @@ public class ListaEstatica implements Lista {
                 break;
             }
 
-            int proximo = info[i + 1];
+            T proximo = info[i + 1];
             info[i] = proximo;
         }
 
@@ -96,15 +96,15 @@ public class ListaEstatica implements Lista {
     }
 
     @Override
-    public void concatenar(Lista lista) {
+    public void concatenar(Lista<T> lista) {
         for (int i = 0; i < lista.getTamanho(); i++) {
             this.inserir(lista.pegar(i));
         }
     }
 
     @Override
-    public ListaEstatica dividir() {
-        ListaEstatica dividida = new ListaEstatica();
+    public Lista<T> dividir() {
+        ListaEstatica<T> dividida = new ListaEstatica<>();
 
         int tamanhoOriginal = this.tamanho;
         int metadeLista = this.tamanho / 2;
@@ -119,8 +119,8 @@ public class ListaEstatica implements Lista {
     }
 
     @Override
-    public ListaEstatica copiar() {
-        ListaEstatica copy = new ListaEstatica();
+    public Lista<T> copiar() {
+        Lista<T> copy = new ListaEstatica<>();
 
         for (int i = 0; i < tamanho; i++) {
             copy.inserir(info[i]);
