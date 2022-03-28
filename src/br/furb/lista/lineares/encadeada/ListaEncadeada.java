@@ -171,4 +171,8 @@ public class ListaEncadeada<T> implements Lista<T> {
     public int getTamanho() {
         return qtdElementos;
     }
+
+    public NoLista<T> getUltimo() {
+        return ultimo;
+    }
 }
