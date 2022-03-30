@@ -68,7 +68,7 @@ public class MainTrabalho {
 
             limite = parseNumber(scanner);
 
-            if (limite < 0) {
+            if (limite <= 0) {
                 System.out.println("Valor inválido...");
                 limite = null;
             }

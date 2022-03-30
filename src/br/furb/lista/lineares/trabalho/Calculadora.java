@@ -15,8 +15,7 @@ public class Calculadora {
     }
 
     public Calculadora(int limite) {
-        int normalizedLimite = limite - 1;
-        this.pilha = PilhaFactory.create(normalizedLimite);
+        this.pilha = PilhaFactory.create(limite);
     }
 
     private Double soma(Double primeiroArgumento, Double segundoArgumento) {
