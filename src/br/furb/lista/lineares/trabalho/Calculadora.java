@@ -68,8 +68,6 @@ public class Calculadora {
             Double primeiroArgumento = pilha.pop();
             double resultado;
 
-            // TODO: Fix pilha lista... nao trazendo resultado certo
-
             switch (expressionValue) {
                 case "+":
                     resultado = soma(primeiroArgumento, segundoArgumento);
