@@ -17,8 +17,7 @@ public class PilhaLista<T> implements Pilha<T> {
     public T pop() {
         T valor = peek();
 
-        // TODO: Fix this to always remove the last element...
-        // Do something like, get the before last and set as the last element...
+        listaEncadeada.retiraUltimo();
 
         return valor;
     }

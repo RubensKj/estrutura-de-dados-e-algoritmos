@@ -175,4 +175,21 @@ public class ListaEncadeada<T> implements Lista<T> {
     public NoLista<T> getUltimo() {
         return ultimo;
     }
+
+    public void retiraUltimo() {
+        if (this.primeiro != null) {
+            if (this.primeiro.getProx() == null) {
+                this.primeiro = null;
+                return;
+            }
+
+            NoLista<T> p = this.primeiro;
+            while (p.getProx().getProx() != null) {
+                p = p.getProx();
+            }
+
+            p.setProx(null);
+            ultimo = p;
+        }
+    }
 }
