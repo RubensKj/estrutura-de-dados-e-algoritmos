@@ -6,14 +6,11 @@ import br.furb.lista.lineares.pilhas.PilhaVetor;
 
 public class PilhaFactory {
 
-    public static Pilha<Double> create(Integer tipoPilha) {
-        switch (tipoPilha) {
-            case 1:
-                return new PilhaVetor<>(10000);
-            case 2:
-                return new PilhaLista<>();
-            default:
-                throw new RuntimeException("Tipo de pilha inválido. TipoPilha: " + tipoPilha);
-        }
+    public static Pilha<Double> create() {
+        return new PilhaLista<>();
+    }
+
+    public static Pilha<Double> create(int limite) {
+        return new PilhaVetor<>(limite);
     }
 }

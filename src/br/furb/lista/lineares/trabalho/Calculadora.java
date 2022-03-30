@@ -2,26 +2,33 @@ package br.furb.lista.lineares.trabalho;
 
 import br.furb.lista.lineares.Pilha;
 
+import java.util.Arrays;
+
 public class Calculadora {
 
     private static final String SEPARATOR = " ";
 
     private final Pilha<Double> pilha;
 
-    public Calculadora(Integer tipoPilha) {
-        this.pilha = PilhaFactory.create(tipoPilha);
+    public Calculadora() {
+        this.pilha = PilhaFactory.create();
     }
 
-    private double multiplica(Double primeiroArgumento, Double segundoArgumento) {
-        return primeiroArgumento * segundoArgumento;
+    public Calculadora(int limite) {
+        int normalizedLimite = limite - 1;
+        this.pilha = PilhaFactory.create(normalizedLimite);
+    }
+
+    private Double soma(Double primeiroArgumento, Double segundoArgumento) {
+        return primeiroArgumento + segundoArgumento;
     }
 
     private Double subtrai(Double primeiroArgumento, Double segundoArgumento) {
         return primeiroArgumento - segundoArgumento;
     }
 
-    private Double soma(Double primeiroArgumento, Double segundoArgumento) {
-        return primeiroArgumento + segundoArgumento;
+    private double multiplica(Double primeiroArgumento, Double segundoArgumento) {
+        return primeiroArgumento * segundoArgumento;
     }
 
     private Double divide(Double primeiroArgumento, Double segundoArgumento) {
@@ -31,10 +38,28 @@ public class Calculadora {
     public Double calcula(String expressao) {
         String[] expressionValues = expressao.split(SEPARATOR);
 
+        if (expressionValues.length < 2) {
+            throw new CalculoException("Expressão inválida");
+        }
+
+        long totalNumbers = Arrays.stream(expressionValues).filter(this::isNumber).count();
+        long countSymbols = expressionValues.length - totalNumbers;
+
+        if (totalNumbers == 0) {
+            throw new CalculoException("Não há números na expressão.");
+        }
+
+        if (totalNumbers == countSymbols) {
+            throw new CalculoException("Não há operandos suficientes para realizar a soma");
+        }
+
+        if ((totalNumbers - 1) != countSymbols) {
+            throw new CalculoException("Faltou algum operador para usar todos os elementos da expressão");
+        }
+
         for (String expressionValue : expressionValues) {
             if (isNumber(expressionValue)) {
                 pilha.push(Double.parseDouble(expressionValue));
-                System.out.println(expressionValue);
                 continue;
             }
 
@@ -60,7 +85,7 @@ public class Calculadora {
                     resultado = divide(primeiroArgumento, segundoArgumento);
                     break;
                 default:
-                    throw new RuntimeException("Caracter inválido na expressão. Caracter: " + expressionValue);
+                    throw new CalculoException("Caracter inválido na expressão. Caracter: " + expressionValue);
             }
 
             pilha.push(resultado);
