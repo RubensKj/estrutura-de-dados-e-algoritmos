@@ -66,4 +66,22 @@ public class PilhaVetor<T> implements Pilha<T> {
 
         return stringBuilder.append("]").toString();
     }
+
+    public int compara(PilhaVetor<T> p2) {
+        if (this.tamanho < p2.tamanho) {
+            return -1;
+        }
+
+        if (this.tamanho == p2.tamanho) {
+            for (int i = 0; i < this.tamanho; i++) {
+                if (!info[i].equals(p2.info[i])) {
+                    return 1;
+                }
+            }
+
+            return 0;
+        }
+
+        return 1;
+    }
 }
